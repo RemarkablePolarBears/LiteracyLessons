@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <title>文獻檢查音樂輔助記憶 & CARS 寫作結構</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      color: #333;
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+    }
+    h1, h2 {
+      text-align: center;
+      margin: 10px 0;
+    }
+    .container {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+    .menu {
+      width: 240px;
+      background: #2c3e50;
+      padding: 20px;
+      color: #fff;
+      overflow-y: auto;
+    }
+    .menu h2 {
+      font-size: 1rem;
+      margin-top: 1.5em;
+    }
+    .menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu li {
+      margin: 8px 0;
+    }
+    .menu a {
+      display: block;
+      padding: 8px 12px;
+      background: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s;
+      font-size: 0.9rem;
+    }
+    .menu a:hover {
+      background: #2980b9;
+    }
+    .content {
+      flex: 1;
+      background: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 4px;
+    }
+    .content p {
+      color: #666;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>音樂輔助記憶 & CARS 寫作結構</h1>
+  <div class="container">
+    <nav class="menu">
+      <h2>音樂輔助記憶 文獻查找流程（新視窗）</h2>
+      <ul>
+        <li>
+          <a href="https://suno.com/song/12272769-8073-49d2-82cf-05f8891cb376?sh=q2JEiu8PfUc9NDdv"
+             target="_blank" rel="noopener">
+            Staring at a Blank Page @ Suno
+          </a>
+        </li>
+        <li>
+          <a href="https://suno.com/song/8942ceb5-5ad5-4e7d-ac2d-2f1b86ce16ca?sh=U1P1TSz8YJj933bW"
+             target="_blank" rel="noopener">
+            Glowing – Academic Flow @ Suno
+          </a>
+        </li>
+        <li>
+          <a href="https://www.taption.com/share/Bp-WyJTYC4SAhPnA8fZBH+en-US"
+             target="_blank" rel="noopener">
+            Glowing – Academic Flow Karaoke 字幕版 @ Taption
+          </a>
+        </li>
+        <li>
+          <a href="https://youtu.be/_ql2FQLOGO0"
+             target="_blank" rel="noopener">
+            Glowing – Academic Flow @ YouTube
+          </a>
+        </li>
+      </ul>
+
+      <h2>音樂輔助記憶 寫作結構（新視窗）</h2>
+      <ul>
+        <li>
+          <a href="https://suno.com/song/6885c405-d960-4254-83b1-a3653829a8b3?sh=sNbsjzz4GfWurfOW"
+             target="_blank" rel="noopener">
+            CARS model (Brave) @ Suno
+          </a>
+        </li>
+        <li>
+          <a href="https://suno.com/song/099651a7-f3ff-45be-85f4-1406b37b651b?sh=wHE8fmsu79UPRnPD"
+             target="_blank" rel="noopener">
+            CARS model (Uncharted) @ Suno
+          </a>
+        </li>
+      </ul>
+
+      <h2>其他視覺化 / 互動內容</h2>
+      <ul>
+        <li>
+          <a href="#" onclick="loadContent('Swales_CARS_markmap_horizontal.html'); return false;">
+            CARS Model (Horizontal)
+          </a>
+        </li>
+        <li>
+          <a href="#" onclick="loadContent('Swales_CARS_markmap_vertical.html'); return false;">
+            CARS Model (Vertical)
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="content">
+      <p>請從左側選單選擇內容，或點擊外部連結將在新分頁開啟。</p>
+    </section>
+  </div>
+
+  <script>
+    function loadContent(url) {
+      const contentDiv = document.querySelector('.content');
+      contentDiv.innerHTML = `<iframe src="${url}" title="Content Frame"></iframe>`;
+    }
+  </script>
+</body>
+</html>
