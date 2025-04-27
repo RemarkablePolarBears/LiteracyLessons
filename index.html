@@ -1,4 +1,43 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,51 +47,134 @@
       font-family: Arial, sans-serif;
       background: #f5f5f5;
       margin: 0;
-      padding: 40px;
       color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      margin: 20px 0;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-      max-width: 400px;
+    h3 {
+      text-align: center;
+      margin: 10px 0;
+    }
+    .theme-image {
+      display: block;
+      max-width: 100%;
+      height: auto;
       margin: 0 auto;
     }
-    li {
-      margin: 15px 0;
+    .container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 150px); /* Adjust for header height */
+    }
+    .menu {
+      width: 15%;
+      background: #2c3e50;
+      padding: 20px;
+      overflow-y: auto;
+      border-right: 2px solid #ccc;
+    }
+    .menu h2 {
+      color: #fff;
+      font-size: 1.2rem;
+      margin: 20px 0 10px;
       text-align: center;
     }
-    a {
-      display: inline-block;
-      padding: 10px 20px;
+    .menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu li {
+      margin: 10px 0;
+    }
+    .menu a {
+      display: block;
+      padding: 10px;
       background: #3498db;
       color: #fff;
       text-decoration: none;
       border-radius: 4px;
+      text-align: center;
       transition: background 0.3s;
+      font-size: 0.9rem;
     }
-    a:hover {
+    .menu a:hover {
       background: #2980b9;
+      cursor: pointer;
+    }
+    .content {
+      width: 85%;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+    }
+    .content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 4px;
+    }
+    .content p {
+      font-size: 1.2rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
-  <center>
-<h1>數位素養工作坊教案總覽--〈到底幾頭熊？〉APA及文獻工作坊</h1>
-  <center><h3>陽明交通大學教育研究所博士生吳宜倫41343006</h3></center><br>
-<br>
+  <div>
+    <img src="bears_academic_writing_digital_literacy_cartoon.jpg" alt="Bears Learning Academic Writing" class="theme-image">
+    <h1>數位素養工作坊教案總覽--〈到底幾頭熊？〉APA及文獻工作坊</h1>
+    <h3>陽明交通大學教育研究所博士生吳宜倫41343006</h3>
+  </div>
+  <div class="container">
+    <div class="menu">
+      <h2>工作坊教案</h2>
+      <ul>
+        <li><a onclick="loadContent('113-2_LiteracyWorkshopOverview.html')">〈到底幾頭熊？〉工作坊教案總覽</a></li>
+        <li><a onclick="loadContent('113-2_LiteracyLessonPlan.html')">教案總覽</a></li>
+        <li><a onclick="loadContent('113-2_LiteracyMaterials.html')">教案教材總覽</a></li>
+      </ul>
+      <h2>音樂輔助記憶 文獻查找流程（新視窗）</h2>
+      <ul>
+        <li><a onclick="loadContent('https://suno.com/song/12272769-8073-49d2-82cf-05f8891cb376?sh=q2JEiu8PfUc9NDdv')">Staring at a Blank Page @ Suno</a></li>
+        <li><a onclick="loadContent('https://suno.com/song/8942ceb5-5ad5-4e7d-ac2d-2f1b86ce16ca?sh=U1P1TSz8YJj933bW')">Glowing – Academic Flow @ Suno</a></li>
+        <li><a onclick="loadContent('https://www.taption.com/share/Bp-WyJTYC4SAhPnA8fZBH+en-US')">Glowing – Academic Flow Karaoke 字幕版 @ Taption</a></li>
+        <li><a onclick="loadContent('https://youtu.be/_ql2FQLOGO0')">Glowing – Academic Flow @ YouTube</a></li>
+      </ul>
+      <h2>音樂輔助記憶 寫作結構（新視窗）</h2>
+      <ul>
+        <li><a onclick="loadContent('https://suno.com/song/6885c405-d960-4254-83b1-a3653829a8b3?sh=sNbsjzz4GfWurfOW')">CARS model (Brave) @ Suno</a></li>
+        <li><a onclick="loadContent('https://suno.com/song/099651a7-f3ff-45be-85f4-1406b37b651b?sh=wHE8fmsu79UPRnPD')">CARS model (Uncharted) @ Suno</a></li>
+      </ul>
+      <h2>Visuals</h2>
+      <ul>
+        <li><a onclick="loadContent('Swales_CARS_AWL_horizontal.html')">概念圖輔助記憶 學術英文CARS model (Horizontal)</a></li>
+        <li><a onclick="loadContent('Swales_CARS_AWL_vertical.html')">概念圖輔助記憶 學術英文CARS model (Vertical)</a></li>
+        <li><a onclick="loadContent('Swales_CARS_markmap_horizontal.html')">概念圖輔助記憶 學術英文CARS model 與動詞時態 (Horizontal)</a></li>
+        <li><a onclick="loadContent('Swales_CARS_markmap_vertical.html')">概念圖輔助記憶 學術英文CARS model 與動詞時態 (Vertical)</a></li>
+      </ul>
+      <h2>遊戲化學習</h2>
+      <ul>
+        <li><a onclick="loadContent('https://remarkablepolarbears.github.io/apa7_2048/#games-2048')">APA7 2048 Games</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <p>請從左側選單選擇內容可以在此視窗顯示</p>
+      <p>歌曲部份，因SUNO政策，會另新開視窗顯示</p>
 
-   <a href="113-2_LiteracyWorkshopOverview.html">〈到底幾頭熊？〉工作坊教案總覽</a><br><br>
-
-    <a href="113-2_LiteracyLessonPlan.html">教案總覽</a><br><br>
-
-    <a href="113-2_LiteracyMaterials.html ">教案教材總覽</a><br>
-</center>
-
-
- </ul>
+    </div>
+  </div>
+  <script>
+    function loadContent(url) {
+      const contentDiv = document.querySelector('.content');
+      contentDiv.innerHTML = `<iframe src="${url}" title="Content Frame"></iframe>`;
+    }
+  </script>
 </body>
 </html>
