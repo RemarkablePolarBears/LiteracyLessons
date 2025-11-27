@@ -6,6 +6,13 @@
   <style>
     body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; color: #333; display: flex; flex-direction: column; height: 100vh; }
     h1, h3 { text-align: center; margin: 10px 0; }
+    .banner { 
+      width: 100%; 
+      max-height: 180px; 
+      object-fit: cover; 
+      object-position: center;
+      display: block;
+    }
     .container { display: flex; flex: 1; }
     .menu {
       width: 240px; background: #2c3e50; padding: 20px; color: #fff;
@@ -28,11 +35,9 @@
   </style>
 </head>
 <body>
-  <img src="bears_academic_writing_digital_literacy_cartoon.jpg"
-       alt="Bears Learning Academic Writing" style="max-width:100%; height:auto; display:block; margin:20px auto;">
+  <img src="bearsapa7.jpg" alt="Bears Learning Academic Writing" class="banner">
   <h1>數位素養工作坊教案總覽──〈到底幾頭熊？〉APA及文獻工作坊</h1>
-  <h3>陽明交通大學教育研究所博士生 吳宜倫 413460006</h3>
-
+  <h3>TAECT 2025 教案競賽</h3>
   <div class="container">
     <nav class="menu">
       <h2>工作坊教案</h2>
@@ -47,14 +52,12 @@
           教案教材總覽
         </a></li>
       </ul>
-
       <h2>音樂輔助記憶</h2>
       <ul>
         <li><a href="#" onclick="loadContent('index_music.html');return false;">
           歌曲清單
         </a></li>
       </ul>
-
       <h2>Visuals 概念圖及其他</h2>
       <ul>
         <li><a href="#" onclick="loadContent('Swales_CARS_AWL_horizontal.html');return false;">
@@ -70,7 +73,6 @@
           CARS + Tense (Vertical)
         </a></li>
       </ul>
-
       <h2>遊戲化學習</h2>
       <ul>
         <li><a href="https://remarkablepolarbears.github.io/apa7_2048/#games-2048"
@@ -79,12 +81,10 @@
         </a></li>
       </ul>
     </nav>
-
     <section class="content">
       <p>請從左側選單選擇內容，或點擊外部連結將在新分頁開啟。</p>
     </section>
   </div>
-
   <script>
     function loadContent(url) {
       document.querySelector('.content').innerHTML =
