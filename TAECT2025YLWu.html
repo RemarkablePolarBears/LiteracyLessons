@@ -2,8 +2,8 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>到底幾頭熊？APA 及文獻工作坊 - TAECT 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>到底幾頭熊？APA 及文獻工作坊</title>
     <style>
         * {
             margin: 0;
@@ -12,211 +12,148 @@
         }
         
         body {
-            font-family: "Microsoft JhengHei", "微軟正黑體", Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: "Microsoft JhengHei", "微軟正黑體", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 25px 20px;
+            padding: 20px;
             text-align: center;
+            flex-shrink: 0;
         }
         
-        .header h1 {
+        .header .emoji {
             font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .header .subtitle {
-            font-size: 1.3em;
-            opacity: 0.95;
             margin-bottom: 8px;
         }
         
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 0.95em;
+            opacity: 0.95;
+            margin-bottom: 12px;
+        }
+        
         .header .info {
-            font-size: 1.1em;
-            opacity: 0.9;
-            margin-top: 8px;
+            font-size: 0.75em;
+            opacity: 0.85;
+            line-height: 1.4;
         }
         
         .content {
-            padding: 20px 15px;
-            min-height: auto;
+            flex: 1;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-        }
-        
-        .view-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            padding: 30px 20px;
             gap: 15px;
-            width: 100%;
-            max-width: 900px;
         }
         
-        .option-card {
-            background: white;
-            border: 3px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 20px 15px;
-            text-align: center;
-            transition: all 0.3s ease;
+        .option-button {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 25px 20px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
         
-        .option-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            border-color: #667eea;
+        .option-button:active {
+            transform: scale(0.98);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
         }
         
-        .icon {
+        .option-icon {
             font-size: 3em;
             margin-bottom: 10px;
         }
         
-        .option-card h3 {
-            color: #333;
-            margin-bottom: 8px;
+        .option-title {
             font-size: 1.3em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 6px;
         }
         
-        .option-card p {
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.4;
+        .option-desc {
             font-size: 0.85em;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 10px 28px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 0.95em;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-        
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            color: #666;
+            text-align: center;
+            line-height: 1.4;
         }
         
         .footer {
-            text-align: center;
             padding: 15px;
+            text-align: center;
+            font-size: 0.75em;
+            color: #999;
             background: #f8f9fa;
-            color: #666;
-            font-size: 0.85em;
-        }
-        
-        @media (max-width: 768px) {
-            .view-options {
-                gap: 15px;
-            }
-            
-            .option-card {
-                padding: 25px 15px;
-            }
-            
-            .icon {
-                font-size: 3em;
-                margin-bottom: 10px;
-            }
-            
-            .option-card h3 {
-                font-size: 1.3em;
-                margin-bottom: 10px;
-            }
-            
-            .option-card p {
-                font-size: 0.85em;
-                margin-bottom: 15px;
-            }
-            
-            .btn {
-                padding: 10px 25px;
-                font-size: 0.95em;
-            }
-            
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
-            .header .subtitle {
-                font-size: 1.1em;
-            }
-            
-            .header .info {
-                font-size: 0.95em;
-            }
-            
-            .content {
-                padding: 20px 15px;
-            }
+            flex-shrink: 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🐻 到底幾頭熊？</h1>
-            <p class="subtitle">APA 及文獻工作坊 概念圖</p>
-            <p class="info">TAECT 2025 教案競賽成果發表 (2.2)</p>
-            <p class="info">吳宜倫 / 國立陽明交通大學教育研究所博士生</p>
-            <p class="info">指導老師：周倩教授</p>
-            <p class="info">📅 2025年12月6日（六）B307</p>
-        </div>
-        
-        <div class="content">
-            <div class="view-options">
-                <div class="option-card">
-                    <div class="icon">💻</div>
-                    <h3>互動式 HTML</h3>
-                    <p>推薦使用！完整互動體驗，支援點擊、縮放等功能。適合電腦及平板觀看。</p>
-                    <a href="https://remarkablepolarbears.github.io/LiteracyLessons/__TAECT2025BearsforAPA7.html" 
-                       class="btn" 
-                       target="_blank">
-                       開啟 HTML 版本
-                    </a>
-                </div>
-                
-                <div class="option-card">
-                    <div class="icon">🖼️</div>
-                    <h3>圖片 PNG</h3>
-                    <p>備用方案。靜態圖片格式，適合所有設備查看，載入速度快。</p>
-                    <a href="https://remarkablepolarbears.github.io/LiteracyLessons/__TAECT2025BearsforAPA7.png" 
-                       class="btn" 
-                       target="_blank">
-                       開啟 PNG 版本
-                    </a>
-                </div>
+            <div class="emoji">🐻</div>
+            <h1>到底幾頭熊？</h1>
+            <div class="subtitle">APA 及文獻工作坊 概念圖</div>
+            <div class="info">
+                TAECT 2025 教案競賽成果發表 (2.2)<br>
+                吳宜倫 / 國立陽明交通大學教育研究所博士生<br>
+                指導老師：周倩教授<br>
+                📅 2025年12月6日（六）B307
             </div>
         </div>
         
+        <div class="content">
+            <a href="https://remarkablepolarbears.github.io/LiteracyLessons/__TAECT2025BearsforAPA7.html" 
+               class="option-button" 
+               target="_blank">
+                <div class="option-icon">💻</div>
+                <div class="option-title">互動式 HTML</div>
+                <div class="option-desc">推薦使用！完整互動體驗</div>
+            </a>
+            
+            <a href="https://remarkablepolarbears.github.io/LiteracyLessons/__TAECT2025BearsforAPA7.png" 
+               class="option-button" 
+               target="_blank">
+                <div class="option-icon">🖼️</div>
+                <div class="option-title">圖片 PNG</div>
+                <div class="option-desc">備用方案・靜態圖片</div>
+            </a>
+        </div>
+        
         <div class="footer">
-            <p>© 2025 吳宜倫</p>
+            © 2025 吳宜倫
         </div>
     </div>
 </body>
