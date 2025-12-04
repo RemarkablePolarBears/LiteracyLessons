@@ -1,95 +1,36 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>數位素養工作坊教案總覽--〈到底幾頭熊？〉APA及文獻工作坊</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; color: #333; display: flex; flex-direction: column; height: 100vh; }
-    h1, h3 { text-align: center; margin: 10px 0; }
-    .banner { 
-      width: 100%; 
-      max-height: 180px; 
-      object-fit: cover; 
-      object-position: center;
-      display: block;
-    }
-    .container { display: flex; flex: 1; }
-    .menu {
-      width: 240px; background: #2c3e50; padding: 20px; color: #fff;
-      overflow-y: auto; box-sizing: border-box;
-    }
-    .menu h2 { font-size: 1rem; margin-top: 1.5em; }
-    .menu ul { list-style: none; padding: 0; }
-    .menu li { margin: 8px 0; }
-    .menu a {
-      display: block; padding: 8px 12px; background: #3498db;
-      color: #fff; text-decoration: none; border-radius: 4px;
-      transition: background 0.2s; font-size: 0.9rem;
-    }
-    .menu a:hover { background: #2980b9; }
-    .content {
-      flex: 1; background: #fff; padding: 20px; box-sizing: border-box;
-    }
-    .content iframe { width: 100%; height: 100%; border: none; border-radius: 4px; }
-    .content p { color: #666; font-size: 1.1rem; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
 </head>
 <body>
-  <img src="bearsapa7.jpg" alt="Bears Learning Academic Writing" class="banner">
-  <h1>數位素養工作坊教案總覽──〈到底幾頭熊？〉APA及文獻工作坊</h1>
-  <h3>TAECT 2025 教案競賽</h3>
-  <div class="container">
-    <nav class="menu">
-      <h2>工作坊教案</h2>
-      <ul>
-        <li><a href="#" onclick="loadContent('113-2_LiteracyWorkshopOverview.html');return false;">
-          〈到底幾頭熊？〉工作坊教案總覽（要載入比較久）
-        </a></li>
-        <li><a href="#" onclick="loadContent('113-2_LiteracyLessonPlan.html');return false;">
-          教案總覽
-        </a></li>
-        <li><a href="#" onclick="loadContent('113-2_LiteracyMaterials.html');return false;">
-          教案教材總覽
-        </a></li>
-      </ul>
-      <h2>音樂輔助記憶</h2>
-      <ul>
-        <li><a href="#" onclick="loadContent('index_music.html');return false;">
-          歌曲清單
-        </a></li>
-      </ul>
-      <h2>Visuals 概念圖及其他</h2>
-      <ul>
-        <li><a href="#" onclick="loadContent('Swales_CARS_AWL_horizontal.html');return false;">
-          CARS Model (Horizontal)
-        </a></li>
-        <li><a href="#" onclick="loadContent('Swales_CARS_AWL_vertical.html');return false;">
-          CARS Model (Vertical)
-        </a></li>
-        <li><a href="#" onclick="loadContent('Swales_CARS_markmap_horizontal.html');return false;">
-          CARS + Tense (Horizontal)
-        </a></li>
-        <li><a href="#" onclick="loadContent('Swales_CARS_markmap_vertical.html');return false;">
-          CARS + Tense (Vertical)
-        </a></li>
-      </ul>
-      <h2>遊戲化學習</h2>
-      <ul>
-        <li><a href="https://remarkablepolarbears.github.io/apa7_2048/#games-2048"
-               target="_blank" rel="noopener">
-          Games Menu – Bear Families
-        </a></li>
-      </ul>
-    </nav>
-    <section class="content">
-      <p>請從左側選單選擇內容，或點擊外部連結將在新分頁開啟。</p>
-    </section>
-  </div>
-  <script>
-    function loadContent(url) {
-      document.querySelector('.content').innerHTML =
-        '<iframe src="' + url + '" title="Content"></iframe>';
-    }
-  </script>
+    <header>
+        <h1>Obsidian Canvas Viewer</h1>
+        <input type="file" id="fileUpload" name="fileUpload" accept=".canvas" onchange="loadFile(event)" hidden>
+        <label for="fileUpload" class="file-label">
+            Open .canvas
+            <span class="svg-container">
+                <svg height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"><path fill="#dadada" d="M20,6h-8l-2-2H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8C22,6.9,21.1,6,20,6z M20,18H4V8h16V18z"/></svg>
+            </span>
+        </label>
+    </header>
+    <div id="bodyContainer">
+        <div id="nodeContainer"></div>
+        <canvas id="bgCanvas"></canvas>
+    </div>
+    <footer>
+        <p>Canvas Viewer by Seb - Scroll to zoom, middle mouse click to drag</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
