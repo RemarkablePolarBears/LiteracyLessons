@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>到底幾頭熊？APA 及文獻工作坊</title>
     <style>
         * {
@@ -12,148 +12,125 @@
         }
         
         body {
-            font-family: "Microsoft JhengHei", "微軟正黑體", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: "Microsoft JhengHei", "微軟正黑體", Arial, sans-serif;
+            background: #f5f5f5;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 480px;
-            min-height: 100vh;
-            background: white;
             display: flex;
             flex-direction: column;
         }
         
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
+            background: #fef3dc;
+            padding: 30px 20px;
             text-align: center;
-            flex-shrink: 0;
-        }
-        
-        .header .emoji {
-            font-size: 2.5em;
-            margin-bottom: 8px;
         }
         
         .header h1 {
-            font-size: 1.5em;
-            margin-bottom: 6px;
-            font-weight: 700;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #333;
         }
         
-        .header .subtitle {
-            font-size: 0.95em;
-            opacity: 0.95;
-            margin-bottom: 12px;
-        }
-        
-        .header .info {
-            font-size: 0.75em;
-            opacity: 0.85;
-            line-height: 1.4;
+        .header p {
+            font-size: 1em;
+            color: #333;
+            margin: 5px 0;
         }
         
         .content {
             flex: 1;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 30px 20px;
-            gap: 15px;
-        }
-        
-        .option-button {
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 25px 20px;
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 16px;
+            padding: 20px;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .option {
+            text-align: center;
+        }
+        
+        .option a {
+            display: block;
             text-decoration: none;
-            color: inherit;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-        
-        .option-button:active {
-            transform: scale(0.98);
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .option-icon {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-        
-        .option-title {
-            font-size: 1.3em;
-            font-weight: 700;
             color: #333;
-            margin-bottom: 6px;
         }
         
-        .option-desc {
-            font-size: 0.85em;
-            color: #666;
-            text-align: center;
-            line-height: 1.4;
+        .icon {
+            font-size: 100px;
+            margin-bottom: 20px;
         }
         
-        .footer {
-            padding: 15px;
-            text-align: center;
-            font-size: 0.75em;
-            color: #999;
-            background: #f8f9fa;
-            flex-shrink: 0;
+        .option h2 {
+            font-size: 1.8em;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 400px) {
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.3em;
+            }
+            
+            .header p {
+                font-size: 0.8em;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .options {
+                gap: 20px;
+            }
+            
+            .icon {
+                font-size: 70px;
+                margin-bottom: 15px;
+            }
+            
+            .option h2 {
+                font-size: 1.3em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="emoji">🐻</div>
-            <h1>到底幾頭熊？</h1>
-            <div class="subtitle">APA 及文獻工作坊 概念圖</div>
-            <div class="info">
-                TAECT 2025 教案競賽成果發表 (2.2)<br>
-                吳宜倫 / 國立陽明交通大學教育研究所博士生<br>
-                指導老師：周倩教授<br>
-                📅 2025年12月6日（六）B307
+    <div class="header">
+        <h1>🐻 到底幾頭熊？</h1>
+        <p>APA 及文獻工作坊 概念圖</p>
+        <p>TAECT 2025 教案競賽成果發表 (2.2)</p>
+        <p>吳宜倫 / 國立陽明交通大學教育研究所博士生</p>
+        <p>指導老師：周倩教授</p>
+        <p>📅 2025年12月6日（六）B307</p>
+    </div>
+    
+    <div class="content">
+        <div class="options">
+            <div class="option">
+                <a href="https://remarkablepolarbears.github.io/LiteracyLessons/TAECT2025BearsforAPA7.html" target="_blank">
+                    <div class="icon">💻</div>
+                    <h2>互動式<br>HTML</h2>
+                </a>
             </div>
-        </div>
-        
-        <div class="content">
-            <a href="https://remarkablepolarbears.github.io/LiteracyLessons/__TAECT2025BearsforAPA7.html" 
-               class="option-button" 
-               target="_blank">
-                <div class="option-icon">💻</div>
-                <div class="option-title">互動式 HTML</div>
-                <div class="option-desc">推薦使用！完整互動體驗</div>
-            </a>
             
-            <a href="https://remarkablepolarbears.github.io/LiteracyLessons/__TAECT2025BearsforAPA7.png" 
-               class="option-button" 
-               target="_blank">
-                <div class="option-icon">🖼️</div>
-                <div class="option-title">圖片 PNG</div>
-                <div class="option-desc">備用方案・靜態圖片</div>
-            </a>
-        </div>
-        
-        <div class="footer">
-            © 2025 吳宜倫
+            <div class="option">
+                <a href="https://remarkablepolarbears.github.io/LiteracyLessons/TAECT2025BearsforAPA7.png" target="_blank">
+                    <div class="icon">🖼️</div>
+                    <h2>圖片 PNG</h2>
+                </a>
+            </div>
         </div>
     </div>
 </body>
